@@ -1,6 +1,8 @@
 import pg from 'pg';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const url : string = "postgresql://postgres:pi31415@localhost:5432/poc?schema=public"
+const url : string = process.env.DATABASE_URL;
 const {Pool} = pg;
 const db = new Pool({
     connectionString: url
