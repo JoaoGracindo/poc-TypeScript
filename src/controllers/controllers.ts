@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Book } from "../protocols.js";
+import { Book, BookEntity } from "../protocols.js";
 import repositories from "../repositories/repositories.js";
 
 async function create(req: Request, res: Response){
@@ -16,7 +16,7 @@ async function create(req: Request, res: Response){
 async function getAll(req: Request, res: Response){
 
     try{
-        const promise = await repositories.getAll();
+        const {rows: promise} = await repositories.getAll();
         return res.status(200).send(promise);
 
     }catch(err){

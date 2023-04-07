@@ -1,5 +1,6 @@
+import { QueryResult } from 'pg';
 import db from '../config/database.js';
-import { Book } from '../protocols.js';
+import { Book, BookEntity } from '../protocols.js';
 
 async function create(book: Book){
     return await db.query(`
@@ -9,7 +10,7 @@ async function create(book: Book){
     `, [book.name, book.author])
 }
 
-async function getAll(){
+async function getAll(): Promise<QueryResult<BookEntity>>{
     return await db.query(`
         SELECT * FROM books;
     `)
