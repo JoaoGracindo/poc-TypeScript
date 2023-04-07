@@ -29,9 +29,27 @@ async function remove(id){
     `, id)
 }
 
+async function checkName(name){
+
+    return await db.query(`
+        SELECT * FROM books
+        WHERE name=$1;
+    `, name)
+}
+
+async function checkId(id){
+
+    return await db.query(`
+        SELECT * FROM books
+        WHERE id=$1;
+    `, id)
+}
+
 export default {
     create,
     getAll,
     update,
-    remove
+    remove,
+    checkId,
+    checkName
 };

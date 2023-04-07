@@ -9,10 +9,12 @@ function validateSchema(schema: ObjectSchema){
         const {error} = schema.validate(book, {
             abortEarly: false
         });
+        if(!error) {
+            next();
+        }else{
+            res.status(409).send(error.details.map((obj) => obj.message));
+        }
 
-        if(!error) next();
-
-        res.status(409).send(error.details.map((obj) => obj.message));
     }
 }
 export default {validateSchema};

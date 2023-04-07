@@ -1,15 +1,16 @@
 import { Request, Response } from "express";
-import { Book, BookEntity } from "../protocols.js";
+import { Book } from "../protocols.js";
 import repositories from "../repositories/repositories.js";
+import services from "../services/services.js";
 
 async function create(req: Request, res: Response){
 
     const book = req.body as Book;
     try{
-        await repositories.create(book);
+        await services.create(book);
         return res.sendStatus(201);
     }catch(err){
-        return res.sendStatus(500);
+        return res.status(500).send(err.message);
     }
 }
 
@@ -28,7 +29,7 @@ async function update(req: Request, res: Response){
     const {id} = req.params;
 
     try{
-        await repositories.update(id);
+        await services.checkId(id, repositories.update);
         return res.sendStatus(201);
     }catch(err){
         return res.status(500).send(err.message);
@@ -39,7 +40,7 @@ async function remove(req: Request, res: Response){
     const {id} = req.params;
 
     try{
-        await repositories.remove(id);
+        await services.checkId(id, repositories.remove);
         return res.sendStatus(201);
     }catch(err){
         return res.status(500).send(err.message);
