@@ -1,6 +1,7 @@
 import { Router } from "express";
 import middlewares from '../middlewares/middlewares.js';
 import controllers from '../controllers/controllers.js';
+import schema from "../models/schemas.js";
 
 const router = Router();
 
