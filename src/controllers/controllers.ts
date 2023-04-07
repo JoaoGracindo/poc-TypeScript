@@ -6,7 +6,7 @@ async function create(req: Request, res: Response){
 
     const book = req.body as Book;
     try{
-        await repositories.create();
+        await repositories.create(book);
         return res.sendStatus(201);
     }catch(err){
         return res.sendStatus(500);
