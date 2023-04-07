@@ -5,9 +5,9 @@ import schema from "../models/schemas.js";
 
 const router = Router();
 
-router.get('/');
-router.post('/');
-router.put('/:id');
-router.delete('/:id');
+router.get('/', controllers.getAll);
+router.post('/', middlewares.validateSchema(schema), controllers.create);
+router.put('/:id', controllers.update);
+router.delete('/:id', controllers.remove);
 
 export default router;
