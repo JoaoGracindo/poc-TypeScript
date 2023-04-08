@@ -14,7 +14,7 @@ async function checkId(id, action: Function){
 
     const {rowCount} = await repositories.checkId(id);
     if(!rowCount) throw new Error("not found");
-
+    
     action(id);
 }
 

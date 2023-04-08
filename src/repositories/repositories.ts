@@ -24,9 +24,9 @@ async function update(id){
 }
 async function remove(id){
     return await db.query(`
-        DELETE books
+        DELETE FROM books
         WHERE id=$1;
-    `, id)
+    `, [id])
 }
 
 async function checkName(name){
@@ -34,7 +34,7 @@ async function checkName(name){
     return await db.query(`
         SELECT * FROM books
         WHERE name=$1;
-    `, name)
+    `, [name])
 }
 
 async function checkId(id){
@@ -42,7 +42,7 @@ async function checkId(id){
     return await db.query(`
         SELECT * FROM books
         WHERE id=$1;
-    `, id)
+    `, [id])
 }
 
 export default {
