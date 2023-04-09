@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Book } from "../protocols.js";
+import { Book, BookEntity } from "../protocols.js";
 import repositories from "../repositories/repositories.js";
 import services from "../services/services.js";
 
@@ -27,9 +27,10 @@ async function getAll(req: Request, res: Response){
 async function update(req: Request, res: Response){
 
     const {id} = req.params;
+    const bookId: number = Number(id);
 
     try{
-        await services.checkId(id, repositories.update);
+        await services.checkId(bookId, repositories.update);
         return res.sendStatus(201);
     }catch(err){
         return res.status(500).send(err.message);
@@ -38,9 +39,10 @@ async function update(req: Request, res: Response){
 async function remove(req: Request, res: Response){
 
     const {id} = req.params;
+    const bookId: number = Number(id);
 
     try{
-        await services.checkId(id, repositories.remove);
+        await services.checkId(bookId, repositories.remove);
         return res.sendStatus(201);
     }catch(err){
         return res.status(500).send(err.message);

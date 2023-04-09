@@ -10,7 +10,7 @@ async function create(book: Book){
     repositories.create(book);
 }
 
-async function checkId(id, action: Function){
+async function checkId(id: number, action: Function){
 
     const {rowCount} = await repositories.checkId(id);
     if(!rowCount) throw new Error("not found");

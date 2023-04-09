@@ -15,21 +15,21 @@ async function getAll(): Promise<QueryResult<BookEntity>>{
         SELECT * FROM books;
     `)
 }
-async function update(id){
+async function update(id: number){
     return await db.query(`
         UPDATE books
         SET finished=TRUE 
         WHERE id=$1;
     `, [id])
 }
-async function remove(id){
+async function remove(id: number){
     return await db.query(`
         DELETE FROM books
         WHERE id=$1;
     `, [id])
 }
 
-async function checkName(name){
+async function checkName(name: string){
 
     return await db.query(`
         SELECT * FROM books
@@ -37,7 +37,7 @@ async function checkName(name){
     `, [name])
 }
 
-async function checkId(id){
+async function checkId(id: number){
 
     return await db.query(`
         SELECT * FROM books
